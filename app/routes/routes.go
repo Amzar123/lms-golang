@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"clean-code/controllers/users"
+	"mini-project/controllers/users"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"

@@ -43,7 +43,7 @@ func (config *ConfigDB) InitDB() *gorm.DB {
 }
 
 func DBMigrate(db *gorm.DB) {
-	db.AutoMigrate(&users.User{})
+	db.AutoMigrate(&users.Student{},&users.Teacher{},&users.Module{}, &users.Access{})
 }
 
 func CloseDB(db *gorm.DB) error {

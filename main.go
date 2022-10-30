@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	_driverFactory "clean-code/drivers"
-	"clean-code/util"
+	_driverFactory "mini-project/drivers"
+	"mini-project/util"
 	"log"
 	"net/http"
 	"os"
@@ -12,13 +12,13 @@ import (
 	"syscall"
 	"time"
 
-	_userUseCase "clean-code/businesses/users"
-	_userController "clean-code/controllers/users"
+	_userUseCase "mini-project/businesses/users"
+	_userController "mini-project/controllers/users"
 
-	_dbDriver "clean-code/drivers/mysql"
+	_dbDriver "mini-project/drivers/mysql"
 
-	_middleware "clean-code/app/middlewares"
-	_routes "clean-code/app/routes"
+	_middleware "mini-project/app/middlewares"
+	_routes "mini-project/app/routes"
 
 	echo "github.com/labstack/echo/v4"
 )
