@@ -31,3 +31,23 @@ func (req *Student) Validate() error {
 
 	return err
 }
+
+type StudentLogin struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required"`
+}
+
+func (req *StudentLogin) ToDomainLogin() *students.Domain {
+	return &students.Domain{
+		Email:    	req.Email,
+		Password: 	req.Password,
+	}
+}
+
+func (req *StudentLogin) ValidateLogin() error {
+	validate := validator.New()
+
+	err := validate.Struct(req)
+
+	return err
+}

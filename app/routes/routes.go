@@ -18,7 +18,7 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 
 	students := e.Group("/api/v1/students")
 	students.POST("/register", cl.StudentController.CreateStudent)
-	// students.POST("/login", cl.StudentController.Login)
+	students.POST("/login", cl.StudentController.Login)
 	// students.GET("/modules", middleware.JWTWithConfig(cl.JWTMiddleware), cl.StudentController.Modules)
 
 	// e.POST("/logout", cl.AuthController.Logout)

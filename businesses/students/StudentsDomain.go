@@ -19,12 +19,12 @@ type Domain struct {
 
 type Usecase interface {
 	// GetAllUser() []Domain
-	Create(userDomain *Domain) Domain
-	// Login(userDomain *Domain) string
+	Create(studentDomain *Domain) Domain
+	Login(studentDomain *Domain) string
 }
 
 type Repository interface {
 	// GetAllUser() []Domain
-	Create(userDomain *Domain) Domain
-	// GetByEmail(userDomain *Domain) Domain
+	Create(studentDomain *Domain) Domain
+	GetByEmail(studentDomain *Domain) Domain
 }

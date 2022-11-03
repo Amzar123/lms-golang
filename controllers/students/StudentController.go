@@ -44,35 +44,35 @@ func (ctrl *StudentController) CreateStudent(c echo.Context) error {
 	return c.JSON(http.StatusCreated, response.FromDomain(student))
 }
 
-// func (ctrl *AuthController) Login(c echo.Context) error {
-// 	userInput := request.User{}
+func (ctrl *StudentController) Login(c echo.Context) error {
+	studentInput := request.StudentLogin{}
 
-// 	if err := c.Bind(&userInput); err != nil {
-// 		return c.JSON(http.StatusBadRequest, map[string]string{
-// 			"message": "invalid request",
-// 		})
-// 	}
+	if err := c.Bind(&studentInput); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"message": "invalid request",
+		})
+	}
 
-// 	err := userInput.Validate()
+	err := studentInput.ValidateLogin()
 
-// 	if err != nil {
-// 		return c.JSON(http.StatusBadRequest, map[string]string{
-// 			"message": "validation failed",
-// 		})
-// 	}
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"message": "validation failed",
+		})
+	}
 
-// 	token := ctrl.authUseCase.Login(userInput.ToDomain())
+	token := ctrl.studentUseCase.Login(studentInput.ToDomainLogin())
 
-// 	if token == "" {
-// 		return c.JSON(http.StatusUnauthorized, map[string]string{
-// 			"message": "invalid email or password",
-// 		})
-// 	}
+	if token == "" {
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"message": "invalid email or password",
+		})
+	}
 
-// 	return c.JSON(http.StatusOK, map[string]string{
-// 		"token": token,
-// 	})
-// }
+	return c.JSON(http.StatusOK, map[string]string{
+		"token": token,
+	})
+}
 
 // func (ctrl *AuthController) Logout(c echo.Context) error {
 // 	user := c.Get("user").(*jwt.Token)

@@ -18,17 +18,17 @@ func (uu *StudentUsecase) Create(studentDomain *Domain) Domain {
 	return uu.studentRepository.Create(studentDomain)
 }
 
-// func (uu *UserUsecase) Login(userDomain *Domain) string {
-// 	user := uu.userRepository.GetByEmail(userDomain)
+func (uu *StudentUsecase) Login(studentDomain *Domain) string {
+	student := uu.studentRepository.GetByEmail(studentDomain)
 
-// 	if user.ID == 0 {
-// 		return ""
-// 	}
+	if student.NISN == "" {
+		return " ";
+	}
 
-// 	token := uu.jwtAuth.GenerateToken(int(user.ID))
+	token := uu.jwtAuth.GenerateToken(2)
 
-// 	return token
-// }
+	return token
+}
 
 // func (uu *UserUsecase) GetAllUser() []Domain {
 // 	return uu.userRepository.GetAllUser()

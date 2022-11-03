@@ -2,7 +2,7 @@ package student
 
 import (
 	"mini-project/businesses/students"
-	// "fmt"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -32,25 +32,25 @@ func (ur *studentRepository) Create(studentDomain *students.Domain) students.Dom
 	return rec.ToDomain()
 }
 
-// func (ur *userRepository) GetByEmail(userDomain *users.Domain) users.Domain {
-// 	var user User
+func (ur *studentRepository) GetByEmail(studentDomain *students.Domain) students.Domain {
+	var student Student
 
-// 	ur.conn.First(&user, "email = ?", userDomain.Email)
+	ur.conn.First(&student, "email = ?", studentDomain.Email)
 
-// 	if user.ID == 0 {
-// 		fmt.Println("user not found")
-// 		return users.Domain{}
-// 	}
+	if student.NISN == "" {
+		fmt.Println("Student not found")
+		return students.Domain{}
+	}
 
-// 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(userDomain.Password))
+	err := bcrypt.CompareHashAndPassword([]byte(student.Password), []byte(studentDomain.Password))
 
-// 	if err != nil {
-// 		fmt.Println("password failed!")
-// 		return users.Domain{}
-// 	}
+	if err != nil {
+		fmt.Println("password failed!")
+		return students.Domain{}
+	}
 
-// 	return user.ToDomain()
-// }
+	return student.ToDomain()
+}
 
 // func (ur *userRepository) GetAllUser() []users.Domain {
 // 	var rec []User
