@@ -16,7 +16,7 @@ type StudentController struct {
 	studentUseCase students.Usecase
 }
 
-func NewAuthController(studentUC students.Usecase) *StudentController {
+func NewStudentController(studentUC students.Usecase) *StudentController {
 	return &StudentController{
 		studentUseCase: studentUC,
 	}

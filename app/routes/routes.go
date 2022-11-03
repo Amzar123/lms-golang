@@ -10,17 +10,17 @@ import (
 type ControllerList struct {
 	LoggerMiddleware   echo.MiddlewareFunc
 	JWTMiddleware      middleware.JWTConfig
-	StudentController  students.AuthController
+	StudentController  students.StudentController
 }
 
 func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	e.Use(cl.LoggerMiddleware)
 
 	students := e.Group("/api/v1/students")
-	students.POST("/register", cl.StudentController.Resgister)
-	students.POST("/login", cl.StudentController.Login)
-	students.GET("/modules", middleware.JWTWithConfig(cl.JWTMiddleware), cl.StudentController.Modules)
+	students.POST("/register", cl.StudentController.CreateStudent)
+	// students.POST("/login", cl.StudentController.Login)
+	// students.GET("/modules", middleware.JWTWithConfig(cl.JWTMiddleware), cl.StudentController.Modules)
 
-	e.POST("/logout", cl.AuthController.Logout)
+	// e.POST("/logout", cl.AuthController.Logout)
 
 }

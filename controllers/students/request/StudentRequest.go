@@ -7,14 +7,20 @@ import (
 )
 
 type Student struct {
+	NISN		string `json:"nisn" validate:"required"`
+	Name	string `json: "name" validate:"required"`
 	Email    string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"required"`
+	Class	string `json:"class" validate:"required"`
 }
 
 func (req *Student) ToDomain() *students.Domain {
 	return &students.Domain{
-		Email:    req.Email,
-		Password: req.Password,
+		NISN:		req.NISN,
+		Name:		req.Name,
+		Email:    	req.Email,
+		Password: 	req.Password,
+		Class:		req.Class,
 	}
 }
 
