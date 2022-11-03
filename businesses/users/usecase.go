@@ -1,6 +1,6 @@
 package users
 
-import "clean-code/app/middlewares"
+import "mini-project/app/middlewares"
 
 type UserUsecase struct {
 	userRepository Repository

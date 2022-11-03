@@ -1,24 +1,24 @@
 package request
 
 import (
-	"mini-project/businesses/users"
+	"mini-project/businesses/students"
 
 	"github.com/go-playground/validator/v10"
 )
 
-type User struct {
+type Student struct {
 	Email    string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"required"`
 }
 
-func (req *User) ToDomain() *users.Domain {
-	return &users.Domain{
+func (req *Student) ToDomain() *students.Domain {
+	return &students.Domain{
 		Email:    req.Email,
 		Password: req.Password,
 	}
 }
 
-func (req *User) Validate() error {
+func (req *Student) Validate() error {
 	validate := validator.New()
 
 	err := validate.Struct(req)

@@ -1,7 +1,7 @@
 package response
 
 import (
-	"clean-code/businesses/users"
+	"mini-project/businesses/users"
 	"time"
 
 	"gorm.io/gorm"

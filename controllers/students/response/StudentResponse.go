@@ -1,4 +1,4 @@
-package student
+package response
 
 import (
 	"mini-project/businesses/students"
@@ -18,28 +18,15 @@ type Student struct {
 	DeletedAt 	gorm.DeletedAt 	`json:"deleted_at"`
 }
 
-func FromDomain(domain *students.Domain) *Student {
-	return &Student{
+func FromDomain(domain students.Domain) Student {
+	return Student{
 		NISN: 		domain.NISN,
 		Email: 		domain.Email,
 		Password: 	domain.Password,
 		Name: 		domain.Name,
 		Class: 		domain.Class,
 		CreatedAt: 	domain.CreatedAt,
-		UpdatedAt: 	domain.UpdatedAt,
+		UpdatedAt:	domain.UpdatedAt,
 		DeletedAt: 	domain.DeletedAt,
-	}
-}
-
-func (rec *Student) ToDomain() students.Domain {
-	return students.Domain{
-		NISN: 		rec.NISN,
-		Email: 		rec.Email,
-		Password: 	rec.Password,
-		Name: 		rec.Name,
-		Class: 		rec.Class,
-		CreatedAt: 	rec.CreatedAt,
-		UpdatedAt: 	rec.UpdatedAt,
-		DeletedAt: 	rec.DeletedAt,
 	}
 }

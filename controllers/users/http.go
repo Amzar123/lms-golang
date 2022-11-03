@@ -1,11 +1,11 @@
 package users
 
 import (
-	"clean-code/app/middlewares"
-	"clean-code/businesses/users"
-	controller "clean-code/controllers"
-	"clean-code/controllers/users/request"
-	"clean-code/controllers/users/response"
+	"mini-project/app/middlewares"
+	"mini-project/businesses/users"
+	controller "mini-project/controllers"
+	"mini-project/controllers/users/request"
+	"mini-project/controllers/users/response"
 	"net/http"
 
 	"github.com/golang-jwt/jwt"

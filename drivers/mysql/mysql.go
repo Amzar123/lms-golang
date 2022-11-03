@@ -1,8 +1,8 @@
 package mysql_driver
 
 import (
-	"clean-code/drivers/mysql/users"
-	"clean-code/util"
+	"mini-project/drivers/mysql/student"
+	"mini-project/util"
 	"errors"
 	"fmt"
 	"log"

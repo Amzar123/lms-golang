@@ -12,8 +12,11 @@ import (
 	"syscall"
 	"time"
 
-	_userUseCase "mini-project/businesses/users"
-	_userController "mini-project/controllers/users"
+	// _userUseCase "mini-project/businesses/users"
+	// _userController "mini-project/controllers/users"
+
+	_studentUseCase "mini-project/businesses/students"
+	_studentController "mini-project/controllers/students"
 
 	_dbDriver "mini-project/drivers/mysql"
 
@@ -49,14 +52,14 @@ func main() {
 
 	e := echo.New()
 
-	userRepo := _driverFactory.NewUserRepository(db)
-	userUsecase := _userUseCase.NewUserUsecase(userRepo, &configJWT)
-	userCtrl := _userController.NewAuthController(userUsecase)
+	studentRepo := _driverFactory.NewStudentRepository(db)
+	studentUsecase := _studentUseCase.NewStudentUsecase(studentRepo, &configJWT)
+	studentCtrl := _studentController.NewStudentController(studentUsecase)
 
 	routesInit := _routes.ControllerList{
 		LoggerMiddleware:   configLogger.Init(),
 		JWTMiddleware:      configJWT.Init(),
-		AuthController:     *userCtrl,
+		studentController:     *studentCtrl,
 	}
 
 	routesInit.RouteRegister(e)
