@@ -31,3 +31,13 @@ func (ur *moduleRepository) GetModules() []modules.Domain {
 
 	return moduleDomain
 }
+
+func (ur *moduleRepository) Create(moduleDomain *modules.Domain) modules.Domain {
+
+	rec := FromDomain(moduleDomain)
+	result := ur.conn.Create(&rec)
+
+	result.Last(&rec)
+
+	return rec.ToDomain()
+}

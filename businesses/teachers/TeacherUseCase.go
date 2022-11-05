@@ -1,35 +1,35 @@
 package teachers
 
-import "clean-code/app/middlewares"
+import "mini-project/app/middlewares"
 
-type UserUsecase struct {
-	userRepository Repository
+type TeacherUsecase struct {
+	teacherRepository Repository
 	jwtAuth        *middlewares.ConfigJWT
 }
 
-func NewUserUsecase(ur Repository, jwtAuth *middlewares.ConfigJWT) Usecase {
-	return &UserUsecase{
-		userRepository: ur,
+func NewTeacherUsecase(ur Repository, jwtAuth *middlewares.ConfigJWT) Usecase {
+	return &TeacherUsecase{
+		teacherRepository: ur,
 		jwtAuth:        jwtAuth,
 	}
 }
 
-func (uu *UserUsecase) Create(userDomain *Domain) Domain {
-	return uu.userRepository.Create(userDomain)
+func (uu *TeacherUsecase) CreateTeacher(teacherDomain *Domain) Domain {
+	return uu.teacherRepository.CreateTeacher(teacherDomain)
 }
 
-func (uu *UserUsecase) Login(userDomain *Domain) string {
-	user := uu.userRepository.GetByEmail(userDomain)
+// func (uu *UserUsecase) Login(userDomain *Domain) string {
+// 	user := uu.userRepository.GetByEmail(userDomain)
 
-	if user.ID == 0 {
-		return ""
-	}
+// 	if user.ID == 0 {
+// 		return ""
+// 	}
 
-	token := uu.jwtAuth.GenerateToken(int(user.ID))
+// 	token := uu.jwtAuth.GenerateToken(int(user.ID))
 
-	return token
-}
+// 	return token
+// }
 
-func (uu *UserUsecase) GetAllUser() []Domain {
-	return uu.userRepository.GetAllUser()
-}
+// func (uu *UserUsecase) GetAllUser() []Domain {
+// 	return uu.userRepository.GetAllUser()
+// }

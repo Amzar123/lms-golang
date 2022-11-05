@@ -4,7 +4,7 @@ import (
 	// "mini-project/app/middlewares"
 	"mini-project/businesses/modules"
 	controller "mini-project/controllers"
-	// "mini-project/controllers/modules/request"
+	"mini-project/controllers/modules/request"
 	"mini-project/controllers/modules/response"
 	"net/http"
 
@@ -32,4 +32,26 @@ func (ctrl *ModuleController) GetModules(c echo.Context) error {
 	}
 
 	return controller.NewResponse(c, http.StatusOK, "success", "all module", modules)
+}
+
+func (ctrl *ModuleController) CreateModule(c echo.Context) error {
+	moduleInput := request.Module{}
+
+	if err := c.Bind(&moduleInput); err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"message": "invalid request",
+		})
+	}
+
+	err := moduleInput.Validate()
+
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{
+			"message": "validation failed",
+		})
+	}
+
+	module := ctrl.moduleUseCase.Create(moduleInput.ToDomain())
+
+	return c.JSON(http.StatusCreated, response.FromDomain(module))
 }

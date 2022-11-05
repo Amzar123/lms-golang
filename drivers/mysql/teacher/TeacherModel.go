@@ -1,7 +1,7 @@
 package teacher
 
 import (
-	"mini-project/businesses/users"
+	"mini-project/businesses/teachers"
 	"time"
 
 	"gorm.io/gorm"
@@ -18,8 +18,8 @@ type Teacher struct {
 	DeletedAt 	gorm.DeletedAt 	`json:"deleted_at"`
 }
 
-func FromDomain(domain *users.Domain) *User {
-	return &User{
+func FromDomain(domain *teachers.Domain) *Teacher {
+	return &Teacher{
 		NIP:        	domain.NIP,
 		Email:     		domain.Email,
 		Password:  		domain.Password,
@@ -31,8 +31,8 @@ func FromDomain(domain *users.Domain) *User {
 	}
 }
 
-func (rec *User) ToDomain() users.Domain {
-	return users.Domain{
+func (rec *Teacher) ToDomain() teachers.Domain {
+	return teachers.Domain{
 		NIP:        	rec.NIP,
 		Email:     		rec.Email,
 		Password:  		rec.Password,

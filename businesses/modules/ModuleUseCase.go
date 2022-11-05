@@ -17,3 +17,7 @@ func NewModuleUsecase(ur Repository, jwtAuth *middlewares.ConfigJWT) Usecase {
 func (uu *ModuleUsecase) GetModules() []Domain {
 	return uu.moduleRepository.GetModules()
 }
+
+func (uu *ModuleUsecase) Create(moduleDomain *Domain) Domain {
+	return uu.moduleRepository.Create(moduleDomain)
+}
