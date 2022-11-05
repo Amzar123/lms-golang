@@ -30,6 +30,6 @@ func (uu *TeacherUsecase) CreateTeacher(teacherDomain *Domain) Domain {
 // 	return token
 // }
 
-// func (uu *UserUsecase) GetAllUser() []Domain {
-// 	return uu.userRepository.GetAllUser()
-// }
+func (uu *TeacherUsecase) GetTeachers() []Domain {
+	return uu.teacherRepository.GetTeachers()
+}

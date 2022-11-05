@@ -31,3 +31,17 @@ func (ur *teacherRepository) CreateTeacher(teacherDomain *teachers.Domain) teach
 
 	return rec.ToDomain()
 }
+
+func (ur *teacherRepository) GetTeachers() []teachers.Domain {
+	var rec []Teacher
+
+	ur.conn.Find(&rec)
+
+	teacherDomain := []teachers.Domain{}
+
+	for _, teacher := range rec {
+		teacherDomain = append(teacherDomain, teacher.ToDomain())
+	}
+
+	return teacherDomain
+}

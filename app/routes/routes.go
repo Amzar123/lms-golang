@@ -24,11 +24,11 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	students.POST("/register", cl.StudentController.CreateStudent)
 	students.POST("/login", cl.StudentController.Login)
 
-	teachers := e.Group("/api/v1/teacher")
-	teachers.POST("/register", cl.TeacherController.CreateTeacher)
+	teachers := e.Group("/api/v1/teachers")
 	teachers.GET("", cl.TeacherController.GetTeachers)
+	teachers.POST("/register", cl.TeacherController.CreateTeacher)
 
-	modules := e.Group("/api/v1/modules", middleware.JWTWithConfig(cl.JWTMiddleware),)
+	modules := e.Group("/api/v1/modules", middleware.JWTWithConfig(cl.JWTMiddleware))
 	modules.GET("", cl.ModuleController.GetModules)
 	modules.POST("/create", cl.ModuleController.CreateModule)
 

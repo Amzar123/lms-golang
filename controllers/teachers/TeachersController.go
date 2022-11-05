@@ -3,7 +3,7 @@ package teachers
 import (
 	// "mini-project/app/middlewares"
 	"mini-project/businesses/teachers"
-	// controller "mini-project/controllers"
+	controller "mini-project/controllers"
 	"mini-project/controllers/teachers/request"
 	"mini-project/controllers/teachers/response"
 	"net/http"
@@ -42,4 +42,16 @@ func (ctrl *TeacherController) CreateTeacher(c echo.Context) error {
 	teacher := ctrl.teacherUseCase.CreateTeacher(teacherInput.ToDomain())
 
 	return c.JSON(http.StatusCreated, response.FromDomain(teacher))
+}
+
+func (ctrl *TeacherController) GetTeachers(c echo.Context) error {
+	teachersData := ctrl.teacherUseCase.GetTeachers()
+
+	teachers := []response.Teacher{}
+
+	for _, teacher := range teachersData {
+		teachers = append(teachers, response.FromDomain(teacher))
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "all module", teachers)
 }
