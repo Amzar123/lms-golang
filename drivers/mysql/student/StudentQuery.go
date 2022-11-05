@@ -52,7 +52,7 @@ func (ur *studentRepository) GetByEmail(studentDomain *students.Domain) students
 	return student.ToDomain()
 }
 
-// func (ur *userRepository) GetAllUser() []users.Domain {
+// func (ur *userRepository) GetModules() []users.Domain {
 // 	var rec []User
 
 // 	ur.conn.Find(&rec)

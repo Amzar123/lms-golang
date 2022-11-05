@@ -2,15 +2,17 @@ package routes
 
 import (
 	"mini-project/controllers/students"
+	"mini-project/controllers/modules"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 type ControllerList struct {
-	LoggerMiddleware   echo.MiddlewareFunc
-	JWTMiddleware      middleware.JWTConfig
-	StudentController  students.StudentController
+	LoggerMiddleware   	echo.MiddlewareFunc
+	JWTMiddleware      	middleware.JWTConfig
+	StudentController  	students.StudentController
+	ModuleController  	modules.ModuleController
 }
 
 func (cl *ControllerList) RouteRegister(e *echo.Echo) {
@@ -19,7 +21,9 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	students := e.Group("/api/v1/students")
 	students.POST("/register", cl.StudentController.CreateStudent)
 	students.POST("/login", cl.StudentController.Login)
-	// students.GET("/modules", middleware.JWTWithConfig(cl.JWTMiddleware), cl.StudentController.Modules)
+
+	modules := e.Group("/api/v1/modules", middleware.JWTWithConfig(cl.JWTMiddleware),)
+	modules.GET("", cl.ModuleController.GetModules)
 
 	// e.POST("/logout", cl.AuthController.Logout)
 

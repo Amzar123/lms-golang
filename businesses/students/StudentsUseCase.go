@@ -30,6 +30,6 @@ func (uu *StudentUsecase) Login(studentDomain *Domain) string {
 	return token
 }
 
-// func (uu *UserUsecase) GetAllUser() []Domain {
-// 	return uu.userRepository.GetAllUser()
+// func (uu *StudentUsecase) GetModules() []Domain {
+// 	return uu.studentRepository.GetModules()
 // }

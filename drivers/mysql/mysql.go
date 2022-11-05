@@ -2,6 +2,7 @@ package mysql_driver
 
 import (
 	"mini-project/drivers/mysql/student"
+	"mini-project/drivers/mysql/module"
 	// "mini-project/util"
 	// "errors"
 	"fmt"
@@ -43,7 +44,7 @@ func (config *ConfigDB) InitDB() *gorm.DB {
 }
 
 func DBMigrate(db *gorm.DB) {
-	db.AutoMigrate(&student.Student{})
+	db.AutoMigrate(&student.Student{}, &module.Module{})
 }
 // ,&users.Teacher{},&users.Module{}, &users.Access{}
 

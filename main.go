@@ -18,6 +18,9 @@ import (
 	_studentUseCase "mini-project/businesses/students"
 	_studentController "mini-project/controllers/students"
 
+	_moduleUseCase "mini-project/businesses/modules"
+	_moduleController "mini-project/controllers/modules"
+
 	_dbDriver "mini-project/drivers/mysql"
 
 	_middleware "mini-project/app/middlewares"
@@ -56,10 +59,15 @@ func main() {
 	studentUsecase := _studentUseCase.NewStudentUsecase(studentRepo, &configJWT)
 	studentCtrl := _studentController.NewStudentController(studentUsecase)
 
+	moduleRepo := _driverFactory.NewModuleRepository(db)
+	moduleUsecase := _moduleUseCase.NewModuleUsecase(moduleRepo, &configJWT)
+	moduleCtrl := _moduleController.NewModuleController(moduleUsecase)
+
 	routesInit := _routes.ControllerList{
 		LoggerMiddleware:   configLogger.Init(),
 		JWTMiddleware:      configJWT.Init(),
 		StudentController:     *studentCtrl,
+		ModuleController:     *moduleCtrl,
 	}
 
 	routesInit.RouteRegister(e)

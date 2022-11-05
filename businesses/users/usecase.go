@@ -30,6 +30,6 @@ func (uu *UserUsecase) Login(userDomain *Domain) string {
 	return token
 }
 
-func (uu *UserUsecase) GetAllUser() []Domain {
-	return uu.userRepository.GetAllUser()
-}
+// func (uu *UserUsecase) GetAllUser() []Domain {
+// 	return uu.userRepository.GetAllUser()
+// }

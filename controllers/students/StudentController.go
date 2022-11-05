@@ -91,15 +91,3 @@ func (ctrl *StudentController) Login(c echo.Context) error {
 // 		"message": "logout success",
 // 	})
 // }
-
-// func (ctrl *AuthController) GetAllUser(c echo.Context) error {
-// 	usersData := ctrl.authUseCase.GetAllUser()
-
-// 	users := []response.User{}
-
-// 	for _, user := range usersData {
-// 		users = append(users, response.FromDomain(user))
-// 	}
-
-// 	return controller.NewResponse(c, http.StatusOK, "success", "all user", users)
-// }

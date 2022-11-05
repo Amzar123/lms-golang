@@ -1,7 +1,7 @@
 package module
 
 import (
-	"mini-project/businesses/users"
+	"mini-project/businesses/modules"
 	"time"
 
 	"gorm.io/gorm"
@@ -9,16 +9,16 @@ import (
 
 type Module struct {
 	IdModule        	string          `json:"idModule" gorm:"primaryKey"`
-	Module     			string         	`json:"role" gorm:"unique" faker:"role"`
+	Module     			string         	`json:"module" gorm:"unique" faker:"module"`
 	TeacherId			string			`json:"teacherId"`
 	CreatedAt 			time.Time      	`json:"created_at"`
 	UpdatedAt 			time.Time      	`json:"updated_at"`
 	DeletedAt 			gorm.DeletedAt 	`json:"deleted_at"`
 }
 
-func FromDomain(domain *roles.Domain) *Role {
-	return &Role{
-		IdRole:        	domain.IdRole,
+func FromDomain(domain *modules.Domain) *Module {
+	return &Module{
+		IdModule:       domain.IdModule,
 		Module:			domain.Module,
 		TeacherId:		domain.TeacherId,
 		CreatedAt: 		domain.CreatedAt,
@@ -27,9 +27,9 @@ func FromDomain(domain *roles.Domain) *Role {
 	}
 }
 
-func (rec *User) ToDomain() roles.Domain {
-	return roles.Domain{
-		IdRole:        	rec.IdRole,
+func (rec *Module) ToDomain() modules.Domain {
+	return modules.Domain{
+		IdModule:       rec.IdModule,
 		Module:			rec.Module,
 		TeacherId:		rec.TeacherId,
 		CreatedAt: 		rec.CreatedAt,
