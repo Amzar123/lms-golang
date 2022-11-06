@@ -4,6 +4,7 @@ import (
 	"mini-project/controllers/students"
 	"mini-project/controllers/modules"
 	"mini-project/controllers/teachers"
+	// "mini-project/controllers/auth"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -15,6 +16,7 @@ type ControllerList struct {
 	StudentController  	students.StudentController
 	ModuleController  	modules.ModuleController
 	TeacherController  	teachers.TeacherController
+	// AuthController  	auth.AuthController
 }
 
 func (cl *ControllerList) RouteRegister(e *echo.Echo) {
@@ -22,7 +24,6 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 
 	students := e.Group("/api/v1/students")
 	students.POST("/register", cl.StudentController.CreateStudent)
-	students.POST("/login", cl.StudentController.Login)
 
 	teachers := e.Group("/api/v1/teachers")
 	teachers.GET("", cl.TeacherController.GetTeachers)
@@ -32,5 +33,7 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	modules.GET("", cl.ModuleController.GetModules)
 	modules.POST("/create", cl.ModuleController.CreateModule)
 
-	// e.POST("/logout", cl.AuthController.Logout)
+	// auth := e.Group("/api/v1")
+	// auth.POST("/login", cl.AuthController.Login)
+	// auth.POST("/logout", cl.AuthController.Logout)
 }

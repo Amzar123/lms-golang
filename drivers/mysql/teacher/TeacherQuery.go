@@ -2,7 +2,7 @@ package teacher
 
 import (
 	"mini-project/businesses/teachers"
-	// "fmt"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -44,4 +44,24 @@ func (ur *teacherRepository) GetTeachers() []teachers.Domain {
 	}
 
 	return teacherDomain
+}
+
+func (ur *teacherRepository) GetByEmail(teacherDomain *teachers.Domain) teachers.Domain {
+	var teacher Teacher
+
+	ur.conn.First(&teacher, "email = ?", teacherDomain.Email)
+
+	if teacher.NIP == "" {
+		fmt.Println("Teacher not found")
+		return teachers.Domain{}
+	}
+
+	err := bcrypt.CompareHashAndPassword([]byte(teacher.Password), []byte(teacherDomain.Password))
+
+	if err != nil {
+		fmt.Println("password failed!")
+		return teachers.Domain{}
+	}
+
+	return teacher.ToDomain()
 }

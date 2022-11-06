@@ -70,12 +70,16 @@ func main() {
 	teacherUsecase := _teacherUseCase.NewTeacherUsecase(teacherRepo, &configJWT)
 	teacherCtrl := _teacherController.NewTeacherController(teacherUsecase)
 
+	// authUsecase := _teacherUseCase.NewAuthUsecase(&configJWT)
+	// authCtrl := _teacherController.NewAuthController(authUsecase)
+
 	routesInit := _routes.ControllerList{
 		LoggerMiddleware:   configLogger.Init(),
 		JWTMiddleware:      configJWT.Init(),
 		StudentController:     *studentCtrl,
 		ModuleController:     *moduleCtrl,
 		TeacherController:     *teacherCtrl,
+		// AuthController:     *authCtrl,
 	}
 
 	routesInit.RouteRegister(e)
