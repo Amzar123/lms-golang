@@ -7,6 +7,7 @@ import (
 )
 
 type Assignment struct {
+	IdAssignment		string			`json:"idAssignment"`
 	Name     			string         	`json:"name" faker:"name"`
 	Deadline			string      	`json:"deadline"`
 	Class				string			`json:"class" faker:"class"`
@@ -14,6 +15,7 @@ type Assignment struct {
 
 func (req *Assignment) ToDomain() *assignments.Domain {
 	return &assignments.Domain{
+		IdAssignment:		req.IdAssignment,	
 		Name:				req.Name,
 		Deadline:			req.Deadline,
 		Class:				req.Class,

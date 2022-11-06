@@ -41,3 +41,39 @@ func (ur *assignmentRepository) Create(assignmentDomain *assignments.Domain) ass
 
 	return rec.ToDomain()
 }
+
+func (nr *assignmentRepository) GetByID(id string) assignments.Domain {
+	var assignment Assignment
+
+	nr.conn.First(&assignment, "id_assignment = ?", id)
+
+	return assignment.ToDomain()
+}
+
+func (nr *assignmentRepository) Update(id string, assignmentDomain *assignments.Domain) assignments.Domain {
+	var assignment assignments.Domain = nr.GetByID(id)
+
+	updatedAssignment := FromDomain(&assignment)
+
+	updatedAssignment.Name = assignmentDomain.Name
+	updatedAssignment.Deadline = assignmentDomain.Deadline
+	updatedAssignment.Class = assignmentDomain.Class
+
+	nr.conn.Save(&updatedAssignment)
+
+	return updatedAssignment.ToDomain()
+}
+
+func (nr *assignmentRepository) Delete(id string) bool {
+	var assignment assignments.Domain = nr.GetByID(id)
+
+	deletedAssignment := FromDomain(&assignment)
+
+	result := nr.conn.Delete(&deletedAssignment)
+
+	if result.RowsAffected == 0 {
+		return false
+	}
+
+	return true
+}

@@ -21,3 +21,15 @@ func (uu *AssignmentUsecase) GetAssignments() []Domain {
 func (uu *AssignmentUsecase) Create(assignmentDomain *Domain) Domain {
 	return uu.assignmentRepository.Create(assignmentDomain)
 }
+
+func (uu *AssignmentUsecase) GetByID(id string) Domain {
+	return uu.assignmentRepository.GetByID(id)
+}
+
+func (nu *AssignmentUsecase) Update(id string, assignmentDomain *Domain) Domain {
+	return nu.assignmentRepository.Update(id, assignmentDomain)
+}
+
+func (nu *AssignmentUsecase) Delete(id string) bool {
+	return nu.assignmentRepository.Delete(id)
+}

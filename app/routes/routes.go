@@ -38,9 +38,9 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	assignments := e.Group("/api/v1/assignments")
 	assignments.GET("", cl.AssignmentController.GetAssignments)
 	assignments.POST("/create", cl.AssignmentController.CreateAssignment)
-	assignments.POST("/delete/:id", cl.AssignmentController.CreateAssignment)
-	assignments.POST("/update/:id", cl.AssignmentController.CreateAssignment)
-	assignments.POST("/:id", cl.AssignmentController.CreateAssignment)
+	assignments.DELETE("/delete/:id", cl.AssignmentController.Delete)
+	assignments.PUT("/update/:id", cl.AssignmentController.Update)
+	assignments.GET("/:id", cl.AssignmentController.GetByID)
 
 	// auth := e.Group("/api/v1")
 	// auth.POST("/login", cl.AuthController.Login)

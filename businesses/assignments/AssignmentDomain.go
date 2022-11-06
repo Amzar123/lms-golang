@@ -19,9 +19,15 @@ type Domain struct {
 type Usecase interface {
 	GetAssignments() []Domain
 	Create(assignmentDomain *Domain) Domain
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
 }
 
 type Repository interface {
 	GetAssignments() []Domain
 	Create(assignmentDomain *Domain) Domain
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
 }
