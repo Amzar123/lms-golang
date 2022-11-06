@@ -55,3 +55,51 @@ func (ctrl *TeacherController) GetTeachers(c echo.Context) error {
 
 	return controller.NewResponse(c, http.StatusOK, "success", "all module", teachers)
 }
+
+func (ctrl *TeacherController) GetByID(c echo.Context) error {
+	var id string = c.Param("id")
+
+	teacher := ctrl.teacherUseCase.GetByID(id)
+
+	if teacher.NIP == "" {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "teacher not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "note found", response.FromDomain(teacher))
+}
+
+func (ctrl *TeacherController) Update(c echo.Context) error {
+	input := request.Teacher{}
+
+	if err := c.Bind(&input); err != nil {
+		return controller.NewResponse(c, http.StatusBadRequest, "failed", "validation failed", "")
+	}
+
+	var teacherId string = c.Param("id")
+
+	err := input.Validate()
+
+	if err != nil {
+		return controller.NewResponse(c, http.StatusBadRequest, "failed", "validation failed", "")
+	}
+
+	teacher := ctrl.teacherUseCase.Update(teacherId, input.ToDomain())
+
+	if teacher.NIP == "" {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "Teacher not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "Teacher updated", response.FromDomain(teacher))
+}
+
+func (ctrl *TeacherController) Delete(c echo.Context) error {
+	var teacherId string = c.Param("id")
+
+	isSuccess := ctrl.teacherUseCase.Delete(teacherId)
+
+	if !isSuccess {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "Teacher not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "Teacher deleted", "")
+}

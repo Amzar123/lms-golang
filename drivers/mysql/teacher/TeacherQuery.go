@@ -65,3 +65,38 @@ func (ur *teacherRepository) GetByEmail(teacherDomain *teachers.Domain) teachers
 
 	return teacher.ToDomain()
 }
+
+func (nr *teacherRepository) GetByID(id string) teachers.Domain {
+	var teacher Teacher
+
+	nr.conn.First(&teacher, "n_ip = ?", id)
+
+	return teacher.ToDomain()
+}
+
+func (nr *teacherRepository) Update(id string, teacherDomain *teachers.Domain) teachers.Domain {
+	var teacher teachers.Domain = nr.GetByID(id)
+
+	updatedTeacher := FromDomain(&teacher)
+
+	updatedTeacher.Email = teacherDomain.Email
+	updatedTeacher.Name = teacherDomain.Name
+	// updatedTeacher.Email = teacherDomain.Email
+	nr.conn.Save(&updatedTeacher)
+
+	return updatedTeacher.ToDomain()
+}
+
+func (nr *teacherRepository) Delete(id string) bool {
+	var teacher teachers.Domain = nr.GetByID(id)
+
+	deletedTeacher := FromDomain(&teacher)
+
+	result := nr.conn.Delete(&deletedTeacher)
+
+	if result.RowsAffected == 0 {
+		return false
+	}
+
+	return true
+}

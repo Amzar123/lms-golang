@@ -30,10 +30,16 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	teachers := e.Group("/api/v1/teachers")
 	teachers.GET("", cl.TeacherController.GetTeachers)
 	teachers.POST("/register", cl.TeacherController.CreateTeacher)
+	teachers.DELETE("/delete/:id", cl.TeacherController.Delete)
+	teachers.PUT("/update/:id", cl.TeacherController.Update)
+	teachers.GET("/:id", cl.TeacherController.GetByID)
 
 	modules := e.Group("/api/v1/modules", middleware.JWTWithConfig(cl.JWTMiddleware))
 	modules.GET("", cl.ModuleController.GetModules)
 	modules.POST("/create", cl.ModuleController.CreateModule)
+	modules.DELETE("/delete/:id", cl.ModuleController.Delete)
+	modules.PUT("/update/:id", cl.ModuleController.Update)
+	modules.GET("/:id", cl.ModuleController.GetByID)
 
 	assignments := e.Group("/api/v1/assignments")
 	assignments.GET("", cl.AssignmentController.GetAssignments)

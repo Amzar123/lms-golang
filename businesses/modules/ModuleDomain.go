@@ -18,11 +18,15 @@ type Domain struct {
 type Usecase interface {
 	GetModules() []Domain
 	Create(moduleDomain *Domain) Domain
-	// Login(studentDomain *Domain) string
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
 }
 
 type Repository interface {
 	GetModules() []Domain
 	Create(moduleDomain *Domain) Domain
-	// GetByEmail(studentDomain *Domain) Domain
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
 }

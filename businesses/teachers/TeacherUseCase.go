@@ -18,17 +18,17 @@ func (uu *TeacherUsecase) CreateTeacher(teacherDomain *Domain) Domain {
 	return uu.teacherRepository.CreateTeacher(teacherDomain)
 }
 
-// func (uu *UserUsecase) Login(userDomain *Domain) string {
-// 	user := uu.userRepository.GetByEmail(userDomain)
+func (uu *TeacherUsecase) GetByID(id string) Domain {
+	return uu.teacherRepository.GetByID(id)
+}
 
-// 	if user.ID == 0 {
-// 		return ""
-// 	}
+func (nu *TeacherUsecase) Update(id string, teacherDomain *Domain) Domain {
+	return nu.teacherRepository.Update(id, teacherDomain)
+}
 
-// 	token := uu.jwtAuth.GenerateToken(int(user.ID))
-
-// 	return token
-// }
+func (nu *TeacherUsecase) Delete(id string) bool {
+	return nu.teacherRepository.Delete(id)
+}
 
 func (uu *TeacherUsecase) GetTeachers() []Domain {
 	return uu.teacherRepository.GetTeachers()
