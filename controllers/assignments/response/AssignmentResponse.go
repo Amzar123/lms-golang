@@ -1,4 +1,4 @@
-package assignment
+package response
 
 import (
 	"mini-project/businesses/assignments"
@@ -17,8 +17,8 @@ type Assignment struct {
 	DeletedAt 			gorm.DeletedAt 	`json:"deleted_at"`
 }
 
-func FromDomain(domain *assignments.Domain) *Assignment {
-	return &Assignment{
+func FromDomain(domain assignments.Domain) Assignment {
+	return Assignment{
 		IdAssignment:		domain.IdAssignment,     
 		Name:				domain.Name,
 		Deadline:			domain.Deadline,
@@ -26,17 +26,5 @@ func FromDomain(domain *assignments.Domain) *Assignment {
 		CreatedAt:			domain.CreatedAt,
 		UpdatedAt:			domain.UpdatedAt,
 		DeletedAt:			domain.DeletedAt,
-	}
-}
-
-func (rec *Assignment) ToDomain() assignments.Domain {
-	return assignments.Domain{
-		IdAssignment:		rec.IdAssignment,     
-		Name:				rec.Name,
-		Deadline:			rec.Deadline,
-		Class:				rec.Class,
-		CreatedAt:			rec.CreatedAt,
-		UpdatedAt:			rec.UpdatedAt,
-		DeletedAt:			rec.DeletedAt,
 	}
 }

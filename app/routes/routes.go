@@ -4,6 +4,7 @@ import (
 	"mini-project/controllers/students"
 	"mini-project/controllers/modules"
 	"mini-project/controllers/teachers"
+	"mini-project/controllers/assignments"
 	// "mini-project/controllers/auth"
 
 	"github.com/labstack/echo/v4"
@@ -11,11 +12,12 @@ import (
 )
 
 type ControllerList struct {
-	LoggerMiddleware   	echo.MiddlewareFunc
-	JWTMiddleware      	middleware.JWTConfig
-	StudentController  	students.StudentController
-	ModuleController  	modules.ModuleController
-	TeacherController  	teachers.TeacherController
+	LoggerMiddleware   		echo.MiddlewareFunc
+	JWTMiddleware      		middleware.JWTConfig
+	StudentController  		students.StudentController
+	ModuleController  		modules.ModuleController
+	TeacherController  		teachers.TeacherController
+	AssignmentController  	assignments.AssignmentController
 	// AuthController  	auth.AuthController
 }
 
@@ -32,6 +34,13 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	modules := e.Group("/api/v1/modules", middleware.JWTWithConfig(cl.JWTMiddleware))
 	modules.GET("", cl.ModuleController.GetModules)
 	modules.POST("/create", cl.ModuleController.CreateModule)
+
+	assignments := e.Group("/api/v1/assignments")
+	assignments.GET("", cl.AssignmentController.GetAssignments)
+	assignments.POST("/create", cl.AssignmentController.CreateAssignment)
+	assignments.POST("/delete/:id", cl.AssignmentController.CreateAssignment)
+	assignments.POST("/update/:id", cl.AssignmentController.CreateAssignment)
+	assignments.POST("/:id", cl.AssignmentController.CreateAssignment)
 
 	// auth := e.Group("/api/v1")
 	// auth.POST("/login", cl.AuthController.Login)
