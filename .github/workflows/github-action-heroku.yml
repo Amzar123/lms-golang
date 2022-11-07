@@ -10,14 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
+        id: heroku
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0  # use the latest version of the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: mini-project-lms #Must be unique in Heroku
-          heroku_email: aji.muhammad@upi.edu
-          usedocker: true
-          docker_build_args: |
-            NODE_ENV
-        env:
-          NODE_ENV: production
-          # SECRET_KEY: ${{ secrets.MY_SECRET_KEY }}
+          email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
+          api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
+          docker_compose_file: './docker-compose.yml' # set the path to the folder where the docker-compose file is located
+          heroku_apps: '[{"imagename":"lms-golang_mini-project","appname":"mini-project-lms","apptype":"web"},{"imagename":"mariadb:latest","appname":"mariadb","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
+
