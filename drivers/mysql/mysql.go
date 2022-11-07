@@ -72,27 +72,27 @@ func CloseDB(db *gorm.DB) error {
 	return nil
 }
 
-// func SeedUser(db *gorm.DB) users.User {
+// func SeedUser(db *gorm.DB) teachers.User {
 // 	password, _ := bcrypt.GenerateFromPassword([]byte("123123"), bcrypt.DefaultCost)
 
-// 	fakeUser, _ := util.CreateFaker[users.User]()
+// 	fakeUser, _ := util.CreateFaker[teachers.Teacher]()
 
-// 	userRecord := users.User{
+// 	teacherRecord := teachers.Teacher{
 // 		Email:    fakeUser.Email,
 // 		Password: string(password),
 // 	}
 
-// 	if err := db.Create(&userRecord).Error; err != nil {
+// 	if err := db.Create(&teacherRecord).Error; err != nil {
 // 		panic(err)
 // 	}
 
-// 	var foundUser users.User
+// 	var foundTeacher teachers.Teacher
 
-// 	db.Last(&foundUser)
+// 	db.Last(&foundTeacher)
 
-// 	foundUser.Password = "123123"
+// 	foundTeacher.Password = "123123"
 
-// 	return foundUser
+// 	return foundTeacher
 // }
 
 // func CleanSeeders(db *gorm.DB) {

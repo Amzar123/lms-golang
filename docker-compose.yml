@@ -12,9 +12,14 @@ services:
       - mariadb-services
 
   mariadb-services:
-    image: postgres:latest
+    image: mariadb:latest
+    environment:
+      - MARIADB_ROOT_PASSWORD=password
+      - MARIADB_DATABASE=mini_project
+      - MARIADB_USER=root 
+      - MARIADB_PASSWORD=password
     ports:
-      - 5432:5432
+      - 3306:3306
     volumes:
       - ./webapp:/opt/webapp
       - ./mariadb/schema.sql:/data/application/init.sql
