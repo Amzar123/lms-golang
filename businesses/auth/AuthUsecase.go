@@ -3,20 +3,27 @@ package auth
 import "mini-project/app/middlewares"
 
 type AuthUsecase struct {
-	// studentRepository Repository
-	// teacherRepository Repository
+	teacherRepository Repository
 	jwtAuth        *middlewares.ConfigJWT
 }
 
-// func (uu *AuthUsecase) Login(authDomain *Domain) string {
-// 	student := uu.studentRepository.GetByEmail(authDomain)
-// 	teacher := uu.teacherRepository.GetByEmail(authDomain)
+func NewAuthUsecase(ur Repository, jwtAuth *middlewares.ConfigJWT) Usecase {
+	return &AuthUsecase{
+		teacherRepository: ur,
+		jwtAuth:        jwtAuth,
+	}
+}
 
-// 	if user.ID == 0 {
-// 		return ""
-// 	}
 
-// 	token := uu.jwtAuth.GenerateToken(int(user.ID))
+func (uu *AuthUsecase) Login(authDomain *Domain) string {
+	// student := uu.studentRepository.GetByEmail(authDomain)
+	teacher := uu.teacherRepository.GetByEmail(authDomain)
 
-// 	return token
-// }
+	if teacher.Email == "" {
+		return ""
+	}
+
+	token := uu.jwtAuth.GenerateToken(int(2))
+
+	return token
+}
