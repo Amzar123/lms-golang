@@ -6,6 +6,7 @@ require (
 	github.com/go-faker/faker/v4 v4.0.0-beta.3
 	github.com/go-playground/validator/v10 v10.11.1
 	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/google/uuid v1.1.2
 	github.com/labstack/echo/v4 v4.9.1
 	github.com/spf13/viper v1.13.0
 	github.com/stretchr/testify v1.8.1

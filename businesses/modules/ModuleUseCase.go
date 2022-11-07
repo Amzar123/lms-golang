@@ -21,3 +21,15 @@ func (uu *ModuleUsecase) GetModules() []Domain {
 func (uu *ModuleUsecase) Create(moduleDomain *Domain) Domain {
 	return uu.moduleRepository.Create(moduleDomain)
 }
+
+func (uu *ModuleUsecase) GetByID(id string) Domain {
+	return uu.moduleRepository.GetByID(id)
+}
+
+func (nu *ModuleUsecase) Update(id string, moduleDomain *Domain) Domain {
+	return nu.moduleRepository.Update(id, moduleDomain)
+}
+
+func (nu *ModuleUsecase) Delete(id string) bool {
+	return nu.moduleRepository.Delete(id)
+}

@@ -55,3 +55,51 @@ func (ctrl *ModuleController) CreateModule(c echo.Context) error {
 
 	return c.JSON(http.StatusCreated, response.FromDomain(module))
 }
+
+func (ctrl *ModuleController) GetByID(c echo.Context) error {
+	var id string = c.Param("id")
+
+	module := ctrl.moduleUseCase.GetByID(id)
+
+	if module.IdModule == "" {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "assignment not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "note found", response.FromDomain(module))
+}
+
+func (ctrl *ModuleController) Update(c echo.Context) error {
+	input := request.Module{}
+
+	if err := c.Bind(&input); err != nil {
+		return controller.NewResponse(c, http.StatusBadRequest, "failed", "validation failed", "")
+	}
+
+	var moduleId string = c.Param("id")
+
+	err := input.Validate()
+
+	if err != nil {
+		return controller.NewResponse(c, http.StatusBadRequest, "failed", "validation failed", "")
+	}
+
+	module := ctrl.moduleUseCase.Update(moduleId, input.ToDomain())
+
+	if module.IdModule == "" {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "Assignment not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "Assignment updated", response.FromDomain(module))
+}
+
+func (ctrl *ModuleController) Delete(c echo.Context) error {
+	var moduleId string = c.Param("id")
+
+	isSuccess := ctrl.moduleUseCase.Delete(moduleId)
+
+	if !isSuccess {
+		return controller.NewResponse(c, http.StatusNotFound, "failed", "assignment not found", "")
+	}
+
+	return controller.NewResponse(c, http.StatusOK, "success", "assignment deleted", "")
+}

@@ -24,6 +24,9 @@ import (
 	_teacherUseCase "mini-project/businesses/teachers"
 	_teacherController "mini-project/controllers/teachers"
 
+	_assignmentUsecase "mini-project/businesses/assignments"
+	_assignmentController "mini-project/controllers/assignments"
+
 	_dbDriver "mini-project/drivers/mysql"
 
 	_middleware "mini-project/app/middlewares"
@@ -70,16 +73,17 @@ func main() {
 	teacherUsecase := _teacherUseCase.NewTeacherUsecase(teacherRepo, &configJWT)
 	teacherCtrl := _teacherController.NewTeacherController(teacherUsecase)
 
-	// authUsecase := _teacherUseCase.NewAuthUsecase(&configJWT)
-	// authCtrl := _teacherController.NewAuthController(authUsecase)
+	assignmentRepo := _driverFactory.NewAssignmentRepository(db)
+	assignmentUsecase := _assignmentUsecase.NewAssignmentUsecase(assignmentRepo, &configJWT)
+	assignmentCtrl := _assignmentController.NewAssignmentController(assignmentUsecase)
 
 	routesInit := _routes.ControllerList{
-		LoggerMiddleware:   configLogger.Init(),
-		JWTMiddleware:      configJWT.Init(),
-		StudentController:     *studentCtrl,
-		ModuleController:     *moduleCtrl,
-		TeacherController:     *teacherCtrl,
-		// AuthController:     *authCtrl,
+		LoggerMiddleware:   		configLogger.Init(),
+		JWTMiddleware:      		configJWT.Init(),
+		StudentController:     		*studentCtrl,
+		ModuleController:     		*moduleCtrl,
+		TeacherController:     		*teacherCtrl,
+		AssignmentController:     	*assignmentCtrl,
 	}
 
 	routesInit.RouteRegister(e)

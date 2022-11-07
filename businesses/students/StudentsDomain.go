@@ -18,13 +18,11 @@ type Domain struct {
 }
 
 type Usecase interface {
-	// GetModules() []Domain
 	Create(studentDomain *Domain) Domain
 	Login(studentDomain *Domain) string
 }
 
 type Repository interface {
-	// GetModules() []Domain
 	Create(studentDomain *Domain) Domain
 	GetByEmail(studentDomain *Domain) Domain
 }

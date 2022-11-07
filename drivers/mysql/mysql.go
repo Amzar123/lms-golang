@@ -4,6 +4,7 @@ import (
 	"mini-project/drivers/mysql/student"
 	"mini-project/drivers/mysql/module"
 	"mini-project/drivers/mysql/teacher"
+	"mini-project/drivers/mysql/assignment"
 	// "mini-project/util"
 	// "errors"
 	"fmt"
@@ -49,6 +50,7 @@ func DBMigrate(db *gorm.DB) {
 		&student.Student{},
 		&module.Module{},
 		&teacher.Teacher{},
+		&assignment.Assignment{},
 	)
 }
 

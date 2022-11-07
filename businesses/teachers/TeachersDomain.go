@@ -20,11 +20,17 @@ type Domain struct {
 type Usecase interface {
 	GetTeachers() []Domain
 	CreateTeacher(teacherDomain *Domain) Domain
-	// Login(userDomain *Domain) string
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
+	Login(userDomain *Domain) string
 }
 
 type Repository interface {
 	GetTeachers() []Domain
 	CreateTeacher(teacherDomain *Domain) Domain
-	// GetByEmail(userDomain *Domain) Domain
+	GetByID(id string) Domain
+	Update(id string, blogDomain *Domain) Domain
+	Delete(id string) bool
+	GetByEmail(studentDomain *Domain) Domain
 }
