@@ -23,6 +23,7 @@ type Usecase interface {
 	GetByID(id string) Domain
 	Update(id string, blogDomain *Domain) Domain
 	Delete(id string) bool
+	Login(userDomain *Domain) string
 }
 
 type Repository interface {
@@ -31,4 +32,5 @@ type Repository interface {
 	GetByID(id string) Domain
 	Update(id string, blogDomain *Domain) Domain
 	Delete(id string) bool
+	GetByEmail(studentDomain *Domain) Domain
 }

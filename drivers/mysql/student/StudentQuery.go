@@ -51,17 +51,3 @@ func (ur *studentRepository) GetByEmail(studentDomain *students.Domain) students
 
 	return student.ToDomain()
 }
-
-// func (ur *userRepository) GetModules() []users.Domain {
-// 	var rec []User
-
-// 	ur.conn.Find(&rec)
-
-// 	userDomain := []users.Domain{}
-
-// 	for _, user := range rec {
-// 		userDomain = append(userDomain, user.ToDomain())
-// 	}
-
-// 	return userDomain
-// }

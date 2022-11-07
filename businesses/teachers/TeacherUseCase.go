@@ -33,3 +33,15 @@ func (nu *TeacherUsecase) Delete(id string) bool {
 func (uu *TeacherUsecase) GetTeachers() []Domain {
 	return uu.teacherRepository.GetTeachers()
 }
+
+func (uu *TeacherUsecase) Login(teacherDomain *Domain) string {
+	student := uu.teacherRepository.GetByEmail(teacherDomain)
+
+	if student.NIP == "" {
+		return " ";
+	}
+
+	token := uu.jwtAuth.GenerateToken(2)
+
+	return token
+}

@@ -1,14 +1,14 @@
 package students
 
 import (
-	// "mini-project/app/middlewares"
+	"mini-project/app/middlewares"
 	"mini-project/businesses/students"
 	// controller "mini-project/controllers"
 	"mini-project/controllers/students/request"
 	"mini-project/controllers/students/response"
 	"net/http"
 
-	// "github.com/golang-jwt/jwt"
+	"github.com/golang-jwt/jwt"
 	"github.com/labstack/echo/v4"
 )
 
@@ -74,20 +74,20 @@ func (ctrl *StudentController) Login(c echo.Context) error {
 	})
 }
 
-// func (ctrl *AuthController) Logout(c echo.Context) error {
-// 	user := c.Get("user").(*jwt.Token)
+func (ctrl *StudentController) Logout(c echo.Context) error {
+	user := c.Get("user").(*jwt.Token)
 
-// 	isListed := middlewares.CheckToken(user.Raw)
+	isListed := middlewares.CheckToken(user.Raw)
 
-// 	if !isListed {
-// 		return c.JSON(http.StatusUnauthorized, map[string]string{
-// 			"message": "invalid token",
-// 		})
-// 	}
+	if !isListed {
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"message": "invalid token",
+		})
+	}
 
-// 	middlewares.Logout(user.Raw)
+	middlewares.Logout(user.Raw)
 
-// 	return c.JSON(http.StatusOK, map[string]string{
-// 		"message": "logout success",
-// 	})
-// }
+	return c.JSON(http.StatusOK, map[string]string{
+		"message": "logout success",
+	})
+}
