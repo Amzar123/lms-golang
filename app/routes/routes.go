@@ -46,11 +46,9 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	assignments.PUT("/update/:id", cl.AssignmentController.Update)
 	assignments.GET("/:id", cl.AssignmentController.GetByID)
 
-	authStudent := e.Group("/api/v1/student")
-	authStudent.POST("/login", cl.StudentController.Login)
-	authStudent.POST("/logout", cl.StudentController.Logout)
+	students.POST("/login", cl.StudentController.Login)
+	students.POST("/logout", cl.StudentController.Logout)
 
-	authTeacher := e.Group("/api/v1/teacher")
-	authTeacher.POST("/login", cl.TeacherController.Login)
-	authTeacher.POST("/logout", cl.TeacherController.Logout)
+	teachers.POST("/login", cl.TeacherController.Login)
+	teachers.POST("/logout", cl.TeacherController.Logout)
 }

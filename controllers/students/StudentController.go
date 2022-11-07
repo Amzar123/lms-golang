@@ -75,7 +75,7 @@ func (ctrl *StudentController) Login(c echo.Context) error {
 }
 
 func (ctrl *StudentController) Logout(c echo.Context) error {
-	user := c.Get("user").(*jwt.Token)
+	user := c.Get("students").(*jwt.Token)
 
 	isListed := middlewares.CheckToken(user.Raw)
 
