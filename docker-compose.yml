@@ -21,7 +21,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/aji/mariadbvolume:/var/lib/mysql
+      - ./webapp:/opt/webapp
       - ./mariadb/schema.sql:/data/application/init.sql
     command: --init-file /data/application/init.sql
     networks:

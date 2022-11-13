@@ -17,6 +17,7 @@ type ControllerList struct {
 	ModuleController  		modules.ModuleController
 	TeacherController  		teachers.TeacherController
 	AssignmentController  	assignments.AssignmentController
+	
 }
 
 func (cl *ControllerList) RouteRegister(e *echo.Echo) {
