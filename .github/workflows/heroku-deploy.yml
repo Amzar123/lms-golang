@@ -1,0 +1,38 @@
+name: Deploy # The name of the workflow
+
+on: 
+  push:
+    branches:
+      - master #Launch the action on every push on the branch main
+
+jobs:
+  python-build:
+    runs-on: ubuntu-latest # Setup an environment to run the action
+    steps:
+      - uses: actions/checkout@v2 # This actions copy the repository on the environment
+      - name: Rename the heroku_mysql.yml
+        run: |
+          ls -a
+          mv heroku_mysql.yml heroku.yml
+          ls -a
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This action deploys the content on Heroku
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}} #The Heroku api key we stored on our repo secret
+          heroku_app_name: "mini-project-lms" #The name of your heroku app - Must be unique in Heroku
+          heroku_email: "aji.muhammad@upi.edu" #Your heroku yuser name
+  
+  angular-build:
+    needs: python-build
+    runs-on: ubuntu-latest # Setup an environment to run the action
+    steps:
+      - uses: actions/checkout@v2 # This actions copy the repository on the environment
+      - name: Rename the heroku_app.yml
+        run: |
+          ls -a
+          mv heroku_app.yml heroku.yml
+          ls -a
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This action deploys the content on Heroku
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}} #The Heroku api key we stored on our repo secret
+          heroku_app_name: "mini-project-lms" #The name of your heroku app - Must be unique in Heroku
+          heroku_email: "aji.muhammad@upi.edu" #Your heroku yuser name
