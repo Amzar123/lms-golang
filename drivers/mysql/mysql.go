@@ -1,10 +1,11 @@
 package mysql_driver
 
 import (
-	"mini-project/drivers/mysql/student"
-	"mini-project/drivers/mysql/module"
-	"mini-project/drivers/mysql/teacher"
 	"mini-project/drivers/mysql/assignment"
+	"mini-project/drivers/mysql/module"
+	"mini-project/drivers/mysql/student"
+	"mini-project/drivers/mysql/teacher"
+
 	// "mini-project/util"
 	// "errors"
 	"fmt"

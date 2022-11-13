@@ -1,1 +1,1 @@
-CREATE DATABASE mini_project;
+CREATE DATABASE `mini-project`;

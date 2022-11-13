@@ -9,15 +9,14 @@ services:
     networks:
       - my-network
     depends_on:
-      - mariadb-services
+      - mysql-services
 
-  mariadb-services:
-    image: mariadb:latest
+  mysql-services:
+    image: mysql:latest
     environment:
-      - MARIADB_ROOT_PASSWORD=password
-      - MARIADB_DATABASE=mini_project
-      - MARIADB_USER=root 
-      - MARIADB_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mini-project
+      - MYSQL_PASSWORD=password
     ports:
       - 3306:3306
     volumes:
