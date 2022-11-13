@@ -53,3 +53,4 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	teachers.POST("/login", cl.TeacherController.Login)
 	teachers.POST("/logout", cl.TeacherController.Logout)
 }
+
