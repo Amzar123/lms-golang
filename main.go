@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
+	"log"
 	_driverFactory "mini-project/drivers"
 	"mini-project/util"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -78,18 +78,18 @@ func main() {
 	assignmentCtrl := _assignmentController.NewAssignmentController(assignmentUsecase)
 
 	routesInit := _routes.ControllerList{
-		LoggerMiddleware:   		configLogger.Init(),
-		JWTMiddleware:      		configJWT.Init(),
-		StudentController:     		*studentCtrl,
-		ModuleController:     		*moduleCtrl,
-		TeacherController:     		*teacherCtrl,
-		AssignmentController:     	*assignmentCtrl,
+		LoggerMiddleware:     configLogger.Init(),
+		JWTMiddleware:        configJWT.Init(),
+		StudentController:    *studentCtrl,
+		ModuleController:     *moduleCtrl,
+		TeacherController:    *teacherCtrl,
+		AssignmentController: *assignmentCtrl,
 	}
 
 	routesInit.RouteRegister(e)
 
 	go func() {
-		if err := e.Start(":8080"); err != nil && err != http.ErrServerClosed {
+		if err := e.Start(":80"); err != nil && err != http.ErrServerClosed {
 			e.Logger.Fatal("shutting down the server")
 		}
 	}()
