@@ -6,6 +6,10 @@ import (
 	// "errors"
 
 	"log"
+	"mini-project/drivers/mysql/assignment"
+	"mini-project/drivers/mysql/module"
+	"mini-project/drivers/mysql/student"
+	"mini-project/drivers/mysql/teacher"
 
 	// "golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/mysql"
@@ -48,11 +52,10 @@ func (config *ConfigDB) InitDB() *gorm.DB {
 
 func DBMigrate(db *gorm.DB) {
 	db.AutoMigrate(
-	// &student.Student{},
-	// &module.Module{},
-	// &teacher.Teacher{},
-	// &assignment.Assignment{},
-
+		&student.Student{},
+		&module.Module{},
+		&teacher.Teacher{},
+		&assignment.Assignment{},
 	)
 }
 

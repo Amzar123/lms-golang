@@ -94,7 +94,7 @@ func main() {
 		}
 	}()
 
-	wait := gracefulShutdown(context.Background(), 2*time.Second, map[string]operation{
+	wait := gracefulShutdown(context.Background(), 10*time.Second, map[string]operation{
 		"database": func(ctx context.Context) error {
 			return _dbDriver.CloseDB(db)
 		},
