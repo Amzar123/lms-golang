@@ -1,23 +1,22 @@
 package routes
 
 import (
-	"mini-project/controllers/students"
-	"mini-project/controllers/modules"
-	"mini-project/controllers/teachers"
 	"mini-project/controllers/assignments"
+	"mini-project/controllers/modules"
+	"mini-project/controllers/students"
+	"mini-project/controllers/teachers"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 type ControllerList struct {
-	LoggerMiddleware   		echo.MiddlewareFunc
-	JWTMiddleware      		middleware.JWTConfig
-	StudentController  		students.StudentController
-	ModuleController  		modules.ModuleController
-	TeacherController  		teachers.TeacherController
-	AssignmentController  	assignments.AssignmentController
-	
+	LoggerMiddleware     echo.MiddlewareFunc
+	JWTMiddleware        middleware.JWTConfig
+	StudentController    students.StudentController
+	ModuleController     modules.ModuleController
+	TeacherController    teachers.TeacherController
+	AssignmentController assignments.AssignmentController
 }
 
 func (cl *ControllerList) RouteRegister(e *echo.Echo) {
@@ -53,4 +52,3 @@ func (cl *ControllerList) RouteRegister(e *echo.Echo) {
 	teachers.POST("/login", cl.TeacherController.Login)
 	teachers.POST("/logout", cl.TeacherController.Logout)
 }
-
