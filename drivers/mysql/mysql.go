@@ -52,6 +52,7 @@ func DBMigrate(db *gorm.DB) {
 	// &module.Module{},
 	// &teacher.Teacher{},
 	// &assignment.Assignment{},
+
 	)
 }
 
