@@ -35,7 +35,9 @@ func (config *ConfigDB) InitDB() *gorm.DB {
 	// 	config.DB_NAME,
 	// )
 
-	var dsn string = "mysql://bffa768996b0ac:58d94e32@us-cdbr-east-06.cleardb.net/heroku_706e7c18af76f4d?reconnect=true"
+	var dsn string = "mysql://bffa768996b0ac:58d94e32@tcp(us-cdbr-east-06.cleardb.net:3306)/heroku_706e7c18af76f4d"
+
+	// DATABASE_URL='user:pass@tcp(us-cdbr-iron-east-03.cleardb.net:3306)/your_heroku_database'
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
