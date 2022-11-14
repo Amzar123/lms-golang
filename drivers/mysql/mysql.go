@@ -8,7 +8,7 @@ import (
 
 	// "mini-project/util"
 	// "errors"
-	"fmt"
+
 	"log"
 
 	// "golang.org/x/crypto/bcrypt"
@@ -27,13 +27,15 @@ type ConfigDB struct {
 func (config *ConfigDB) InitDB() *gorm.DB {
 	var err error
 
-	var dsn string = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		config.DB_USERNAME,
-		config.DB_PASSWORD,
-		config.DB_HOST,
-		config.DB_PORT,
-		config.DB_NAME,
-	)
+	// var dsn string = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	// 	config.DB_USERNAME,
+	// 	config.DB_PASSWORD,
+	// 	config.DB_HOST,
+	// 	config.DB_PORT,
+	// 	config.DB_NAME,
+	// )
+
+	var dsn string = "mysql://bffa768996b0ac:58d94e32@us-cdbr-east-06.cleardb.net/heroku_706e7c18af76f4d?reconnect=true"
 
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 

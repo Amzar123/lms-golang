@@ -20,11 +20,11 @@ func TestMain(m *testing.M) {
 	teacherService = teachers.NewTeacherUsecase(&teacherRepository, &middlewares.ConfigJWT{})
 
 	teacherDomain = teachers.Domain{
-		NIP 		: "900000",
-		Email 		: "guru@gmail.com",
-		Password 	: "$2a$10$bZws9ZXgAyD/MUCM5gNsVOlx8GytFphoKL6y7uAjM/QwyHk7NKV1W",
-		Name 		: "Aji Muhammad Zapar",
-		RoleId 		: "2",
+		NIP:      "900000",
+		Email:    "guru@gmail.com",
+		Password: "$2a$10$bZws9ZXgAyD/MUCM5gNsVOlx8GytFphoKL6y7uAjM/QwyHk7NKV1W",
+		Name:     "Aji Muhammad Zapar",
+		RoleId:   "2",
 	}
 
 	m.Run()
