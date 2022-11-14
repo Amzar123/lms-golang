@@ -39,11 +39,11 @@ type operation func(ctx context.Context) error
 
 func main() {
 	configDB := _dbDriver.ConfigDB{
-		DB_USERNAME: util.GetConfig("DB_USERNAME"),
-		DB_PASSWORD: util.GetConfig("DB_PASSWORD"),
-		DB_HOST:     util.GetConfig("DB_HOST"),
-		DB_PORT:     util.GetConfig("DB_PORT"),
-		DB_NAME:     util.GetConfig("DB_NAME"),
+		DB_USERNAME: "bffa768996b0ac",
+		DB_PASSWORD: "58d94e32",
+		DB_HOST:     "us-cdbr-east-06.cleardb.net",
+		DB_PORT:     "3306",
+		DB_NAME:     "heroku_706e7c18af76f4d",
 	}
 
 	db := configDB.InitDB()
