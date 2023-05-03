@@ -13,7 +13,7 @@ docker-compose -f docker-compose.yml up
 
 ## Standard running apps
 ```
-npm run main.go
+go run main.go
 ```
 
 ## Run unit testing
